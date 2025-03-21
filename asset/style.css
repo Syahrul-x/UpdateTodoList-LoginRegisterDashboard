@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "JetBrains Mono", monospace;
+}
+
+body {
+    background-color: #121212; 
+    color: #e0e0e0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.flexbg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.bg img {
+    max-width: 100%;
+    height: auto;
+}
+
+.loginform {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #1e1e1e; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.loginform:hover {
+    transform: scale(1.02); 
+}
+
+.form h1 {
+    color: #007AFF; 
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.inputs {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-size: 0.9rem;
+    color: #e0e0e0; 
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); 
+    outline: none;
+    background: #303030; 
+    color: #e0e0e079; 
+    transition: border-color 0.3s; 
+}
+
+input:focus {
+    border-bottom: 2px solid #007AFF; 
+}
+
+.button {
+    width: 100%;
+    background: #007AFF; 
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s, color 0.3s; 
+}
+
+.button:hover {
+    background: transparent;
+    color: #007AFF; 
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+}
+
+
+/* Mobile Medium (576px - 767px) */
+@media (min-width: 576px) {
+    .loginform {
+        padding: 30px;
+    }
+}
+
+/* Tablet (768px - 991px) */
+@media (min-width: 768px) {
+    .flexbg {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .bg {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+    .loginform {
+        flex: 1;
+        max-width: 450px;
+    }
+}
+
+/* Laptop (992px - 1199px) */
+@media (min-width: 992px) {
+    .bg img {
+        width: 80%;
+    }
+    .loginform {
+        max-width: 500px;
+        padding: 40px;
+    }
+}
+
+/* Desktop Besar (≥ 1200px) */
+@media (min-width: 1200px) {
+    .bg img {
+        width: 70%;
+    }
+    .loginform {
+        max-width: 550px;
+    }
+}
