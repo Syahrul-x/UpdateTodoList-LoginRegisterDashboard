@@ -4,7 +4,6 @@ if (!isset($_SESSION["user"])) {
     header("Location: login.php");
     exit();
 }
-// Ambil username dari session
 $username = $_SESSION["user"];
 ?>
 
@@ -15,6 +14,46 @@ $username = $_SESSION["user"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List Dashboard</title>
     <link rel="stylesheet" href="asset/dashboard.css">
+    <style>
+        /* Dropdown menu styles */
+        .user-profile {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #2c2e31;
+            border: 1px solid #2e3235;
+            border-radius: 4px;
+            width: 150px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .dropdown-menu.active {
+            display: block;
+        }
+        
+        .dropdown-item {
+            padding: 10px 16px;
+            display: block;
+            color: #e6e6e6;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #34373a;
+        }
+        
+        .dropdown-item.logout {
+            border-top: 1px solid #2e3235;
+            color: #ff5630;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -42,8 +81,13 @@ $username = $_SESSION["user"];
                 <input type="text" class="search-box" placeholder="Search">
                 <span class="search-icon">🔍</span>
             </div>
-            <div class="user-profile">
+            <div class="user-profile" id="userProfile">
                 <div class="avatar"><?php echo substr($username, 0, 2); ?></div>
+                <div class="dropdown-menu" id="profileDropdown">
+                    <a href="#" class="dropdown-item">Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="logout.php" class="dropdown-item logout">Logout</a>
+                </div>
             </div>
         </div>
         
@@ -77,11 +121,6 @@ $username = $_SESSION["user"];
                     </div>
                 </section>
             </nav>
-            
-            <!-- Tombol logout di kiri bawah sidebar -->
-            <div class="sidebar-footer">
-                <a href="logout.php" class="logout-btn">Logout</a>
-            </div>
         </aside>
         
         <main class="content">
@@ -158,5 +197,29 @@ $username = $_SESSION["user"];
     <footer class="main-footer">
         <p>Kelompok 1. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Profile dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const userProfile = document.getElementById('userProfile');
+            const profileDropdown = document.getElementById('profileDropdown');
+            
+            // Toggle dropdown when profile avatar is clicked
+            userProfile.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('active');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                profileDropdown.classList.remove('active');
+            });
+            
+            // Prevent dropdown from closing when clicking inside it
+            profileDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
 </body>
 </html>
